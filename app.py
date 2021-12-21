@@ -1,6 +1,7 @@
 from flask import Flask, render_template ,request, jsonify
 from flask_dropzone import Dropzone
 import os
+import requests
 
 app = Flask(__name__)
 dropzone = Dropzone(app)
@@ -21,6 +22,7 @@ def index():
 def upload():
     f = request.files.get('file')  # 获取文件对象
     f.save(os.path.join(SAVE_DIR, f.filename))  # 保存文件
+    requests.post("http://172.16.3.104:8081/models?url=squeezenet1_1.mar&initial_workers=2")
     return "ok"
 
 

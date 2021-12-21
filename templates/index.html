@@ -7,9 +7,18 @@
     <title>Forward.ai</title>
     {{ dropzone.load_css() }}
     {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; width: 30%') }}
+    <style>
+    @font-face {
+  font-family: 'Minecraft';
+  src: url('/static/Minecraft.ttf');
+}
+.logo {
+  font-family: 'Minecraft'
+}
+    </style>
 </head>
 <body>
-    <h2>Forward.ai</h2>
+    <h2 class="logo">Forward.ai</h2>
     {{ dropzone.create(action='/upload/') }}
 
 
