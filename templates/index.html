@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forward.ai</title>
+    {{ dropzone.load_css() }}
+    {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; width: 30%') }}
+</head>
+<body>
+    <h2>Forward.ai</h2>
+    {{ dropzone.create(action='/upload/') }}
+
+
+    {{ dropzone.load_js() }}
+    {{ dropzone.config() }}
+</body>
+</html>
