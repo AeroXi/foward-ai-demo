@@ -19,6 +19,10 @@
 </head>
 <body>
     <h2 class="logo">Forward.ai</h2>
-    <p>{{ data }}</p>
+    {% for model in model_list %}
+    <p>模型: {{ model["modelName"] }} api: {{ url_prefix }}{{ model["modelName"] }}</p>
+    
+    {% endfor %}
+    
 </body>
 </html>

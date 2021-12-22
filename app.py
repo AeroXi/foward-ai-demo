@@ -2,6 +2,7 @@ from flask import Flask, render_template ,request, jsonify
 from flask_dropzone import Dropzone
 import os
 import requests
+import json
 
 app = Flask(__name__)
 dropzone = Dropzone(app)
@@ -14,6 +15,7 @@ app.config['DROPZONE_TIMEOUT'] = 3600000  # unit: ms
 app.config['DROPZONE_REDIRECT_VIEW'] = 'models'
 
 SAVE_DIR = "/home/ubuntu/model/"
+MODEL_PREDICTION_URL = "http://172.16.3.104:8080"
 MODEL_MANAGE_URL = "http://172.16.3.104:8081"
 
 @app.route("/")
@@ -31,7 +33,10 @@ def upload():
 @app.route("/models/")
 def models():
     r = requests.get(f"{MODEL_MANAGE_URL}/models/")
-    return render_template("models.html", data=r.text)
+    model_data = r.json
+    model_list = model_data["models"]
+    url_prefix = MODEL_PREDICTION_URL + "/predictions/"
+    return render_template("models.html", model_list=model_list, url_prefix=url_prefix)
 
 
 
