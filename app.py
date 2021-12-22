@@ -33,7 +33,7 @@ def upload():
 @app.route("/models/")
 def models():
     r = requests.get(f"{MODEL_MANAGE_URL}/models/")
-    model_data = r.json
+    model_data = r.json()
     model_list = model_data["models"]
     url_prefix = MODEL_PREDICTION_URL + "/predictions/"
     return render_template("models.html", model_list=model_list, url_prefix=url_prefix)
